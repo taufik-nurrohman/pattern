@@ -80,4 +80,4 @@ Convert pattern string to `RegExp` instance.
 
 ### x
 
-List of regular expression&rsquo;s special characters excludes `\`.
+List of regular expression&rsquo;s special characters excluding `\`.
