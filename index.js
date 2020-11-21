@@ -13,20 +13,21 @@
     const token = (start, content, end, skip = "", isGroup = false) => {
         skip += start;
         if (end) {
-            skip += end;
+            if (end !== start) {
+                skip += end;
+            }
         } else {
             end = start;
         }
         content = isArray(content) ? content.join('|') : (content || "");
         if (skip) {
             skip = skip.replace(/[\[\]-]/g, '\\$&');
-            content += (content ? '|' : "") + '[^' + skip + ']';
-            skip = '\\[' + skip + ']|';
+            content = '\\\\.|' + (content ? content + '|' : "") + '[^' + skip + ']';
         }
         if (isGroup) {
-            return '(' + esc(start) + ')((?:' + skip + content + ')*?)(' + esc(end) + ')';
+            return '(' + esc(start) + ')((?:' + content + ')*)(' + esc(end) + ')';
         }
-        return esc(start) + '(?:' + skip + content + ')*?' + esc(end);
+        return esc(start) + '(?:' + content + ')*' + esc(end);
     };
     const tokenGroup = (start, content, end, skip) => token(start, content, end, skip, true);
     const toPattern = (pattern, opt) => {
