@@ -1,13 +1,31 @@
 import {
     isInstance,
+    isPattern,
     isSet
 } from '@taufik-nurrohman/is';
 
 export let x = '!$^*()-=+[]{}\\|:<>,./?';
 
+export const create = (startChar, contains, endChar, asGroup) => {
+    let notContains = startChar;
+    contains = contains ? '(?:' + contains + ')|' : "";
+    if (endChar) {
+        notContains += endChar;
+    } else {
+        endChar = startChar;
+    }
+    if (asGroup) {
+        return '(' + esc(startChar) + ')((?:' + contains + '\\\\.|[^' + esc(notContains) + '])*)(' + esc(endChar) + ')';
+    }
+    return '(?:' + esc(startChar) + '(?:' + contains + '\\\\.|[^' + esc(notContains) + '])*' + esc(endChar) + ')';
+};
+
+export const createGroup = (startChar, contains, endChar) => create(startChar, contains, endChar, true);
+
 export const esc = (str, extra) => str.replace(toPattern('[' + x + extra + ']'), '\\$&');
 export const fromPattern = pattern => isPattern(pattern) ? pattern.source : null;
-export const isPattern = pattern => pattern && isInstance(pattern, RegExp);
+export const isPattern = isPattern;
+
 export const toPattern = (pattern, opt) => {
     if (isPattern(pattern)) {
         return pattern;

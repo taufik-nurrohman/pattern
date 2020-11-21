@@ -42,6 +42,26 @@ console.log(toPattern('[a-z]+'));
 Methods
 -------
 
+### create(startChar, contains, endChar = startChar)
+
+Build pattern string from parameters.
+
+~~~ js
+import {create} from '@taufik-nurrohman/pattern';
+
+console.log(create('"'));
+~~~
+
+### createGroup(startChar, contains, endChar = startChar)
+
+Build pattern string from parameters as a group of `startChar`, `contains` and `endChar`.
+
+~~~ js
+import {createGroup} from '@taufik-nurrohman/pattern';
+
+console.log(createGroup('"'));
+~~~
+
 ### esc(string, extra)
 
 Escape regular expression character(s) in string.
