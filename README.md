@@ -64,7 +64,7 @@ console.log(createGroup('"'));
 
 ### esc(string, extra)
 
-Escape regular expression character(s) in string.
+Escape regular expression characters in string.
 
 ### fromPattern(pattern)
 
@@ -80,4 +80,4 @@ Convert pattern string to `RegExp` instance.
 
 ### x
 
-List of regular expression character(s) to escape.
+List of regular expression characters to escape.
