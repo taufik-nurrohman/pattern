@@ -42,15 +42,7 @@ console.log(toPattern('[a-z]+'));
 Methods
 -------
 
-### P
-
-List of punctuation characters.
-
-### X
-
-List of regular expression characters to escape.
-
-### esc(string, extra)
+### esc(pattern, extra)
 
 Escape regular expression characters in string.
 
@@ -85,3 +77,7 @@ console.log(tokenGroup('"'));
 ### toPattern(string, opt = 'g')
 
 Convert pattern string to `RegExp` instance.
+
+### x
+
+List of regular expression characters to escape.

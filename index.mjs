@@ -5,10 +5,9 @@ import {
     isSet
 } from '@taufik-nurrohman/is';
 
-export let P = '!"#$%&\'\\(\\)*+,\\-./:;<=>?@\\[\\]\\\\^_`{|}~';
-export let X = '!$^*()-=+[]{}\\|:<>,./?';
+export let x = `.\\/+*?[^]$(){}=!<>|:-`;
 
-export const esc = (str, extra) => str.replace(toPattern('[' + X + extra + ']'), '\\$&');
+export const esc = (pattern, extra) => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
 export const fromPattern = pattern => isPattern(pattern) ? pattern.source : null;
 export const isPattern = isPattern;
 export const token = (start, content, end, skip = "", isGroup = false) => {
@@ -18,17 +17,17 @@ export const token = (start, content, end, skip = "", isGroup = false) => {
     } else {
         end = start;
     }
-    let x = "";
+    let $ = "";
     if (skip) {
-        skip = esc(skip);
-        x = '|[^' + skip + ']';
+        skip = skip.replace(/][-/g, '\\$&');
+        $ = '|[^' + skip + ']';
         skip = '\\[' + skip + ']|';
     }
     content = (isArray(content) ? content.join('|') : content) || '[\\s\\S]';
     if (isGroup) {
-        return '(' + esc(start) + ')((?:' + skip + content + x + ')*?)(' + esc(end) + ')';
+        return '(' + esc(start) + ')((?:' + skip + content + $ + ')*?)(' + esc(end) + ')';
     }
-    return esc(start) + '(?:' + skip + content + x + ')' + esc(end);
+    return esc(start) + '(?:' + skip + content + $ + ')' + esc(end);
 };
 
 export const tokenGroup = (start, content, end, skip) => token(start, content, end, skip, true);
