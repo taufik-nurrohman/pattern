@@ -7,10 +7,9 @@
         isPattern,
         isSet
     } = require('@taufik-nurrohman/is');
-    let x = `.\\/+*?[^]$(){}=!<>|:-`;
+    let x = `!$^*()+=[]{}|:<>,.?/-`;
     const esc = (pattern, extra) => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
     const fromPattern = pattern => isPattern(pattern) ? pattern.source : null;
-    const isPattern = isPattern;
     const token = (start, content, end, skip = "", isGroup = false) => {
         skip += start;
         if (end) {
@@ -18,17 +17,16 @@
         } else {
             end = start;
         }
-        let $ = "";
+        content = isArray(content) ? content.join('|') : (content || "");
         if (skip) {
-            skip = skip.replace(/][-/g, '\\$&');
-            $ = '|[^' + skip + ']';
+            skip = skip.replace(/[\[\]-]/g, '\\$&');
+            content += (content ? '|' : "") + '[^' + skip + ']';
             skip = '\\[' + skip + ']|';
         }
-        content = (isArray(content) ? content.join('|') : content) || '[\\s\\S]';
         if (isGroup) {
-            return '(' + esc(start) + ')((?:' + skip + content + $ + ')*?)(' + esc(end) + ')';
+            return '(' + esc(start) + ')((?:' + skip + content + ')*?)(' + esc(end) + ')';
         }
-        return esc(start) + '(?:' + skip + content + $ + ')' + esc(end);
+        return esc(start) + '(?:' + skip + content + ')*?' + esc(end);
     };
     const tokenGroup = (start, content, end, skip) => token(start, content, end, skip, true);
     const toPattern = (pattern, opt) => {
