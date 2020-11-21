@@ -1,0 +1,39 @@
+{
+  "name": "@taufik-nurrohman/pattern",
+  "description": "Regular expression utility.",
+  "version": "0.0.1",
+  "main": "index.js",
+  "exports": {
+    "import": "./index.mjs",
+    "require": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "index.mjs"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@taufik-nurrohman/is": ">=0.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taufik-nurrohman/pattern.git"
+  },
+  "keywords": [
+    "expression",
+    "helper",
+    "pattern",
+    "regex",
+    "regexp",
+    "regular",
+    "utility"
+  ],
+  "author": "Taufik Nurrohman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taufik-nurrohman/pattern/issues"
+  },
+  "homepage": "https://taufik-nurrohman.github.io"
+}
