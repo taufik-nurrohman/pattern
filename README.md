@@ -78,6 +78,10 @@ Detect if `x` is an instance of `RegExp`.
 
 Convert pattern string to `RegExp` instance.
 
-### x
+### EXP
 
 List of regular expression characters to escape.
+
+### PUN
+
+List of punctuation characters.

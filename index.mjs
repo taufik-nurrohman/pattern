@@ -4,7 +4,8 @@ import {
     isSet
 } from '@taufik-nurrohman/is';
 
-export let x = '!$^*()-=+[]{}\\|:<>,./?';
+export let EXP = '!$^*()-=+[]{}\\|:<>,./?';
+export let PUN = '!"#$%&\'\\(\\)*+,\\-./:;<=>?@\\[\\]\\\\^_`{|}~';
 
 export const create = (startChar, contains, endChar, asGroup) => {
     let notContains = startChar;
@@ -22,7 +23,7 @@ export const create = (startChar, contains, endChar, asGroup) => {
 
 export const createGroup = (startChar, contains, endChar) => create(startChar, contains, endChar, true);
 
-export const esc = (str, extra) => str.replace(toPattern('[' + x + extra + ']'), '\\$&');
+export const esc = (str, extra) => str.replace(toPattern('[' + EXP + extra + ']'), '\\$&');
 export const fromPattern = pattern => isPattern(pattern) ? pattern.source : null;
 export const isPattern = isPattern;
 

@@ -6,7 +6,8 @@
         isPattern,
         isSet
     } = require('@taufik-nurrohman/is');
-    let x = '!$^*()-=+[]{}\\|:<>,./?';
+    let EXP = '!$^*()-=+[]{}\\|:<>,./?';
+    let PUN = '!"#$%&\'\\(\\)*+,\\-./:;<=>?@\\[\\]\\\\^_`{|}~';
     const create = (startChar, contains, endChar, asGroup) => {
         let notContains = startChar;
         contains = contains ? '(?:' + contains + ')|' : "";
@@ -21,7 +22,7 @@
         return '(?:' + esc(startChar) + '(?:' + contains + '\\\\.|[^' + esc(notContains) + '])*' + esc(endChar) + ')';
     };
     const createGroup = (startChar, contains, endChar) => create(startChar, contains, endChar, true);
-    const esc = (str, extra) => str.replace(toPattern('[' + x + extra + ']'), '\\$&');
+    const esc = (str, extra) => str.replace(toPattern('[' + EXP + extra + ']'), '\\$&');
     const fromPattern = pattern => isPattern(pattern) ? pattern.source : null;
     const toPattern = (pattern, opt) => {
         if (isPattern(pattern)) {
@@ -31,11 +32,12 @@
         pattern = pattern.replace(/\//g, '\\/');
         return new RegExp(pattern, isSet(opt) ? opt : 'g');
     };
+    $$.EXP = EXP;
+    $$.PUN = PUN;
     $$.create = create;
     $$.createGroup = createGroup;
     $$.esc = esc;
     $$.fromPattern = fromPattern;
     $$.isPattern = isPattern;
     $$.toPattern = toPattern;
-    $$.x = x;
 })(exports || window || {});
