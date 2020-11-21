@@ -1,18 +1,15 @@
 const test = require('ava');
-const {
-    create,
-    createGroup
-} = require('./index.js');
+const {token} = require('./index.js');
 
-test('create', t => {
-    t.is(create('"'), '(?:"(?:\\\\.|[^"])*")');
+test('token', t => {
+    t.is(token('"'), '"(?:\\["]|[^"])*?"');
 });
 
-test('createGroup', t => {
-    t.is(createGroup('"'), '(")((?:\\\\.|[^"])*)(")');
+test('tokenGroup', t => {
+    t.is(tokenGroup('"'), '(")((?:\\["]|[^"])*?)(")');
 });
 
-test('create#1', t => {
-    t.is(create('<', '<\\?[\\s\\S]*?\\?>', '>'), '(?:<(?:(?:<\\?[\\s\\S]*?\\?>)|\\\\.|[^<>])*>)');
-    t.is(createGroup('<', '<\\?[\\s\\S]*?\\?>', '>'), '(<)((?:(?:<\\?[\\s\\S]*?\\?>)|\\\\.|[^<>])*)(>)');
+test('token#1', t => {
+    t.is(token('<', ['<\\?[\\s\\S]*?\\?>'], '>'), '<(?:<\\?[\\s\\S]*?\\?>|\\[\\<\\>]|[^\\<\\>])*?>');
+    t.is(tokenGroup('<', ['<\\?[\\s\\S]*?\\?>'], '>'), '(<)((?:<\\?[\\s\\S]*?\\?>|\\[\\<\\>]|[^\\<\\>])*?)(>)');
 });

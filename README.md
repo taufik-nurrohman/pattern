@@ -42,25 +42,13 @@ console.log(toPattern('[a-z]+'));
 Methods
 -------
 
-### create(startChar, contains, endChar = startChar)
+### P
 
-Build pattern string from parameters.
+List of punctuation characters.
 
-~~~ js
-import {create} from '@taufik-nurrohman/pattern';
+### X
 
-console.log(create('"'));
-~~~
-
-### createGroup(startChar, contains, endChar = startChar)
-
-Build pattern string from parameters as a group of `startChar`, `contains` and `endChar`.
-
-~~~ js
-import {createGroup} from '@taufik-nurrohman/pattern';
-
-console.log(createGroup('"'));
-~~~
+List of regular expression characters to escape.
 
 ### esc(string, extra)
 
@@ -74,14 +62,26 @@ Get pattern from `RegExp` as string.
 
 Detect if `x` is an instance of `RegExp`.
 
+### token(start, content | contents, end = start, skip)
+
+Build pattern string from parameters.
+
+~~~ js
+import {token} from '@taufik-nurrohman/pattern';
+
+console.log(token('"'));
+~~~
+
+### tokenGroup(start, content | contents, end = start, skip)
+
+Build pattern string from parameters as a group of `start`, `content` and `end`.
+
+~~~ js
+import {tokenGroup} from '@taufik-nurrohman/pattern';
+
+console.log(tokenGroup('"'));
+~~~
+
 ### toPattern(string, opt = 'g')
 
 Convert pattern string to `RegExp` instance.
-
-### EXP
-
-List of regular expression characters to escape.
-
-### PUN
-
-List of punctuation characters.
