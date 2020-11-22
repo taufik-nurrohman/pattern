@@ -46,6 +46,10 @@ Methods
 
 Escape regular expression characters in string.
 
+### escChar(pattern, extra)
+
+Escape regular expression characters for character class only. E.g. `^`, `[`, `]`, and `-`.
+
 ### fromPattern(pattern)
 
 Get pattern from `RegExp` as string.
