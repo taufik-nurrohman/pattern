@@ -9,6 +9,7 @@
     } = require('@taufik-nurrohman/is');
     let x = `!$^*()+=[]{}|:<>,.?/-`;
     const esc = (pattern, extra) => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
+    const escChar = (pattern, extra) => pattern.replace(toPattern('[' + extra + '\\^\\[\\]\\-]'), '\\$&');
     const fromPattern = pattern => isPattern(pattern) ? pattern.source : null;
     const token = (start, content, end, skip = "", isGroup = false) => {
         skip += start;
@@ -21,8 +22,7 @@
         }
         content = isArray(content) ? content.join('|') : (content || "");
         if (skip) {
-            skip = skip.replace(/[\[\]-]/g, '\\$&');
-            content = '\\\\.|' + (content ? content + '|' : "") + '[^' + skip + ']';
+            content += (content ? '|' : "") + '\\\\.|[^' + escChar(skip) + ']';
         }
         if (isGroup) {
             return '(' + esc(start) + ')((?:' + content + ')*)(' + esc(end) + ')';
@@ -38,6 +38,7 @@
         return new RegExp(pattern, isSet(opt) ? opt : 'g');
     };
     $$.esc = esc;
+    $$.escChar = escChar;
     $$.fromPattern = fromPattern;
     $$.isPattern = isPattern;
     $$.token = token;
