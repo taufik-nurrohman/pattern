@@ -44,7 +44,7 @@ Methods
 
 ### esc(pattern, extra)
 
-Escape regular expression characters in string.
+Escape regular expression characters in string except `\`.
 
 ### escChar(pattern, extra)
 
@@ -84,4 +84,4 @@ Convert pattern string to `RegExp` instance.
 
 ### x
 
-List of regular expression&rsquo;s special characters excluding `\`.
+List of regular expression&rsquo;s special characters except `\`.
