@@ -1,7 +1,7 @@
 import {
     isArray,
     isInstance,
-    isPattern,
+    isPattern as isPatternCopy,
     isSet
 } from '@taufik-nurrohman/is';
 
@@ -10,7 +10,7 @@ export let x = `!$^*()+=[]{}|:<>,.?/-`;
 export const esc = (pattern, extra) => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
 export const escChar = (pattern, extra) => pattern.replace(toPattern('[' + extra + '\\^\\[\\]\\-]'), '\\$&');
 export const fromPattern = pattern => isPattern(pattern) ? pattern.source : null;
-export const isPattern = isPattern;
+export const isPattern = isPatternCopy;
 export const token = (start, content, end, skip = "", isGroup = false) => {
     skip += start;
     if (end) {
