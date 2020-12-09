@@ -13,17 +13,7 @@ console.log(toPattern('[a-z]+'));
 </script>
 ~~~
 
-### Browser Module
-
-~~~ html
-<script type="module">
-import {toPattern} from './@taufik-nurrohman/pattern/index.mjs';
-
-console.log(toPattern('[a-z]+'));
-</script>
-~~~
-
-### CommonJS Module
+### CommonJS
 
 ~~~ js
 const {toPattern} = require('@taufik-nurrohman/pattern');
@@ -31,7 +21,7 @@ const {toPattern} = require('@taufik-nurrohman/pattern');
 console.log(toPattern('[a-z]+'));
 ~~~
 
-### ECMAScript Module
+### ECMAScript
 
 ~~~ js
 import {toPattern} from '@taufik-nurrohman/pattern';
