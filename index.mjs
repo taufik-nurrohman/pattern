@@ -1,11 +1,4 @@
-import {
-    isArray,
-    isInstance,
-    isPattern as isPatternCopy,
-    isSet
-} from '@taufik-nurrohman/is';
-
-export let x = `!$^*()+=[]{}|:<>,.?/-`;
+import {isArray, isInstance, isPattern as isPatternCopy, isSet} from '@taufik-nurrohman/is';
 
 export const esc = (pattern, extra) => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
 export const escChar = (pattern, extra) => pattern.replace(toPattern('[' + extra + '\\^\\[\\]\\-]'), '\\$&');
@@ -39,3 +32,5 @@ export const toPattern = (pattern, opt) => {
     pattern = pattern.replace(/\//g, '\\/');
     return new RegExp(pattern, isSet(opt) ? opt : 'g');
 };
+
+export let x = `!$^*()+=[]{}|:<>,.?/-`;

@@ -1,18 +1,15 @@
-const test = require('ava');
-const {
-    token,
-    tokenGroup
-} = require('./index.js');
+import ava from 'ava';
+import {token, tokenGroup} from './index.mjs';
 
-test('token', t => {
+ava('token', t => {
     t.is(token('"'), '"(?:\\\\.|[^"])*"');
 });
 
-test('tokenGroup', t => {
+ava('tokenGroup', t => {
     t.is(tokenGroup('"'), '(")((?:\\\\.|[^"])*)(")');
 });
 
-test('token#1', t => {
+ava('token#1', t => {
     t.is(token('<', ['<\\?[\\s\\S]*?\\?>'], '>'), '<(?:<\\?[\\s\\S]*?\\?>|\\\\.|[^<>])*>');
     t.is(tokenGroup('<', ['<\\?[\\s\\S]*?\\?>'], '>'), '(<)((?:<\\?[\\s\\S]*?\\?>|\\\\.|[^<>])*)(>)');
 });
