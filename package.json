@@ -2,7 +2,7 @@
   "author": "Taufik Nurrohman",
   "bugs": "https://github.com/taufik-nurrohman/pattern/issues",
   "dependencies": {
-    "@taufik-nurrohman/is": ">=0.0.5"
+    "@taufik-nurrohman/is": "^0.1.0"
   },
   "description": "Regular expression utility.",
   "devDependencies": {
@@ -36,5 +36,5 @@
   "scripts": {
     "test": "ava test.mjs"
   },
-  "version": "0.0.8"
+  "version": "0.1.0"
 }
