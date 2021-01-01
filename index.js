@@ -1,6 +1,6 @@
 const {isArray, isInstance, isSet} = require('@taufik-nurrohman/is');
 
-const esc = (pattern, extra = "") => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
+const esc = (pattern, extra = "") => pattern.replace(toPattern('[' + extra + x.replace(/./g, '\\$&') + ']'), '\\$&');
 const escChar = (pattern, extra = "") => pattern.replace(toPattern('[' + extra + '\\^\\[\\]\\-]'), '\\$&');
 const fromPattern = pattern => {
     if (isPattern(pattern)) {

@@ -1,6 +1,6 @@
 import {isArray, isInstance, isSet} from '@taufik-nurrohman/is';
 
-export const esc = (pattern, extra = "") => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
+export const esc = (pattern, extra = "") => pattern.replace(toPattern('[' + extra + x.replace(/./g, '\\$&') + ']'), '\\$&');
 export const escChar = (pattern, extra = "") => pattern.replace(toPattern('[' + extra + '\\^\\[\\]\\-]'), '\\$&');
 export const fromPattern = pattern => {
     if (isPattern(pattern)) {
