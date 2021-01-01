@@ -2,7 +2,13 @@ const {isArray, isInstance, isSet} = require('@taufik-nurrohman/is');
 
 const esc = (pattern, extra) => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
 const escChar = (pattern, extra) => pattern.replace(toPattern('[' + extra + '\\^\\[\\]\\-]'), '\\$&');
-const fromPattern = pattern => isPattern(pattern) ? pattern.source : null;
+const fromPattern = pattern => {
+    if (isPattern(pattern)) {
+        // Un-escape `/` in the pattern string
+        return pattern.source.replace(/\\\//g, '/');
+    }
+    return null;
+};
 const isPattern = pattern => isInstance(pattern, RegExp);
 const token = (start, content, end, skip = "", isGroup = false) => {
     skip += start;
