@@ -23,11 +23,11 @@ console.log(toPattern('[a-z]+'));
 Methods
 -------
 
-### esc(pattern, extra)
+### esc(pattern, extra = "")
 
 Escape regular expression characters in string except `\`.
 
-### escChar(pattern, extra)
+### escChar(pattern, extra = "")
 
 Escape regular expression characters for character class only. E.g. `^`, `[`, `]`, and `-`.
 

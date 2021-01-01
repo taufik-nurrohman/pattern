@@ -1,7 +1,7 @@
 const {isArray, isInstance, isSet} = require('@taufik-nurrohman/is');
 
-const esc = (pattern, extra) => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
-const escChar = (pattern, extra) => pattern.replace(toPattern('[' + extra + '\\^\\[\\]\\-]'), '\\$&');
+const esc = (pattern, extra = "") => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
+const escChar = (pattern, extra = "") => pattern.replace(toPattern('[' + extra + '\\^\\[\\]\\-]'), '\\$&');
 const fromPattern = pattern => {
     if (isPattern(pattern)) {
         // Un-escape `/` in the pattern string

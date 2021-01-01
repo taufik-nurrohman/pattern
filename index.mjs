@@ -1,7 +1,7 @@
 import {isArray, isInstance, isSet} from '@taufik-nurrohman/is';
 
-export const esc = (pattern, extra) => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
-export const escChar = (pattern, extra) => pattern.replace(toPattern('[' + extra + '\\^\\[\\]\\-]'), '\\$&');
+export const esc = (pattern, extra = "") => pattern.replace(toPattern('[' + extra + x + ']'), '\\$&');
+export const escChar = (pattern, extra = "") => pattern.replace(toPattern('[' + extra + '\\^\\[\\]\\-]'), '\\$&');
 export const fromPattern = pattern => {
     if (isPattern(pattern)) {
         // Un-escape `/` in the pattern string
