@@ -106,7 +106,7 @@ const toPattern = (pattern, opt) => {
 
 let x = `!$^*()+=[]{}|:<>,.?/-`;
 
-Object.assign(exports || {}, {
+Object.assign(exports, {
     esc,
     escChar,
     extractInner,
