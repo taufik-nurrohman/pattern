@@ -1,5 +1,13 @@
 import ava from 'ava';
-import {token, tokenGroup} from './index.mjs';
+import {fromPattern, toPattern, token, tokenGroup} from './index.mjs';
+
+ava('fromPattern', t => {
+    t.is(fromPattern(/asdf\/asdf/), 'asdf\\/asdf');
+});
+
+ava('toPattern', t => {
+    t.is(toPattern('asdf/asdf').source, 'asdf\\/asdf');
+});
 
 ava('token', t => {
     t.is(token('"'), '"(?:\\\\.|[^"])*"');
