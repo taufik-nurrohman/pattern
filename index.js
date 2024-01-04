@@ -68,7 +68,7 @@ const extractTokens = (content, tokens, defaultTokenName = 0) => {
 
 const fromPattern = pattern => {
     if (isPattern(pattern)) {
-        return pattern.source.replace(/\\\//g, '/');
+        return pattern.source;
     }
     return null;
 };
@@ -100,7 +100,6 @@ const toPattern = (pattern, opt) => {
     if (isPattern(pattern)) {
         return pattern;
     }
-    pattern = pattern.replace(/\//g, '\\/');
     return new RegExp(pattern, isSet(opt) ? opt : 'g');
 };
 

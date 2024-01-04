@@ -75,8 +75,7 @@ export const extractTokens = (content, tokens, defaultTokenName = 0) => {
 
 export const fromPattern = pattern => {
     if (isPattern(pattern)) {
-        // Un-escape `/` in the pattern string
-        return pattern.source.replace(/\\\//g, '/');
+        return pattern.source;
     }
     return null;
 };
@@ -107,8 +106,6 @@ export const toPattern = (pattern, opt) => {
     if (isPattern(pattern)) {
         return pattern;
     }
-    // No need to escape `/` in the pattern string
-    pattern = pattern.replace(/\//g, '\\/');
     return new RegExp(pattern, isSet(opt) ? opt : 'g');
 };
 
